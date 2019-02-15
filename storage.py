@@ -31,7 +31,9 @@ else:
     try:
         with open(storage_path, 'r') as f:
             storage = json.load(f)
-            value = storage.get(args.key, None)
-            print(*value, sep = ", ")
+            if args.key in storage.keys():
+                print(*storage.get(args.key), sep = ", ")
+            else:
+                print(storage.get(args.key, None))
     except                                                                                        IOError:
         print(None)
