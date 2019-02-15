@@ -15,16 +15,16 @@ if args.value:
         with open(storage_path, "r") as f:
             storage = json.load(f)
             if args.key not in storage.keys():
+                key_value_store[args.key] = [args.value]
                 storage.update(key_value_store)
             elif args.key in storage.keys():
-                values_list = [storage[args.key]]
-                values_list.append(key_value_store[args.key])
-                storage[args.key] = values_list
+                storage[args.key].append(key_value_store[args.key])
         with open(storage_path, 'w') as f:
             json.dump(storage, f)
             print(args.key, args.value)
     except:
         with open(storage_path, 'w') as f:
+            key_value_store[args.key] = [args.value]
             json.dump(key_value_store, f)
             print(args.key,args.value)
 else:
