@@ -28,11 +28,13 @@ if args.value:
     except:
         with open(storage_path, 'w') as f:
             json.dump(key_value_store, f)
-            print(args.key, args.value)
+            print(args.key,args.value)
 else:
     try:
         with open(storage_path, 'r') as f:
             storage = json.load(f)
-            print(storage.get(args.key, None))
+            value = str(storage.get(args.key, None))
+            value = value.translate({ord(c):None for c in "''[]"})
+            print(value)
     except IOError:
         print(None)
