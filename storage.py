@@ -31,8 +31,7 @@ else:
     try:
         with open(storage_path, 'r') as f:
             storage = json.load(f)
-            value = str(storage.get(args.key, None))
-            value = value.translate({ord(c):None for c in "''[]"})
-            print(value)
-    except IOError:
+            value = storage.get(args.key, None)
+            print(*value, sep = ", ")
+    except                                                                                        IOError:
         print(None)
