@@ -34,6 +34,6 @@ else:
             if args.key in storage.keys():
                 print(*storage.get(args.key), sep = ", ")
             else:
-                print(storage.get(args.key, None))
+                print(None)
     except                                                                                        IOError:
         print(None)
